@@ -46,7 +46,6 @@ void registerPatient()
         newPatient->display();
         patientTail = newPatient;
     } catch (const exception& e) {
-        cout << "Error: " << e.what() << endl;
         invalidCommandError();  // Assuming this function handles the error appropriately
     }
 }
@@ -72,10 +71,11 @@ void displayPatients(Patient *patientInitializer)
         }
         else
         {
-            cout << "There are no registered patients\n";
+            cout << "----------------------------------------------------------\n";
+            cout << "❗️-- There are no registered patients\n";
+            cout << "----------------------------------------------------------\n";
         }
     } catch (const exception& e) {
-        cout << "Error: " << e.what() << endl;
         invalidCommandError();
     }
 }
@@ -103,7 +103,6 @@ void registerDoctor()
         newDoctor->display();
         doctorTail = newDoctor;
     } catch (const exception& e) {
-        cout << "Error: " << e.what() << endl;
         invalidCommandError();
     }
 }
@@ -128,11 +127,12 @@ void displayDoctors(Doctor *doctorInitializer)
             }
         }
         else
-        {
-            cout << "There are no registered doctors\n";
+        {   
+            cout << "----------------------------------------------------------\n";
+            cout << "❗️-- There are no registered doctors\n";
+            cout << "----------------------------------------------------------\n";
         }
     } catch (const exception& e) {
-        cout << "Error: " << e.what() << endl;
         invalidCommandError();
     }
 }
@@ -141,27 +141,39 @@ void displayDoctors(Doctor *doctorInitializer)
 void registerAppointment(Patient *patientInitializer, Doctor *doctorInitializer)
 {
     try {
-        int doctorId;
-        int patientId;
+        string doctorId;
+        string patientId;
         string appointmentDate;
+        enterDoc:
         cout << "Enter the Doctor's Id: ";
         cin>>doctorId;
+        if(!isNumber(doctorId)){
+            invalidCommandError();
+            goto enterDoc;
+        }
+        enterPat:
         cout << "Enter the Patient's Id: ";
         cin>>patientId;
+        if(!isNumber(patientId)){
+            invalidCommandError();
+            goto enterPat;
+        }
 
         // Clear input buffer before reading the date
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter the Appointment Date: ";
         getline(cin, appointmentDate);
-        if (!isPatientIdValid(patientInitializer,patientId) || !isDoctorIdValid(doctorInitializer,doctorId))
+
+        if (!isPatientIdValid(patientInitializer,stoi(patientId)) || stoi(patientId) == 0)
         {
-            cout<<"here";
-            unregisteredError();
-            cout<<"here";
+            unregisteredError("patient");
+        }
+        else if(!isDoctorIdValid(doctorInitializer,stoi(doctorId)) || stoi(doctorId) == 0){
+            unregisteredError("doctor");
         }
         else
         {
-            Appointment *newAppointment = new Appointment(appointmentTail, doctorId, patientId, appointmentDate);
+            Appointment *newAppointment = new Appointment(appointmentTail, stoi(doctorId), stoi(patientId), appointmentDate);
             cout << "----------------------------------------------------------\n";
             cout << "✅ -- Appointment Registered successfully" << endl;
             cout << "----------------------------------------------------------\n";
@@ -170,7 +182,6 @@ void registerAppointment(Patient *patientInitializer, Doctor *doctorInitializer)
             appointmentTail = newAppointment;
         }
     } catch (const exception& e) {
-        cout << "Error: " << e.what() << endl;
         invalidCommandError();
     }
 }
@@ -192,17 +203,18 @@ void displayAppointments(Appointment *appointmentInitializer)
             }
         }
         else
-        {
-            cout << "There are no registered appointments\n";
+        {   
+            cout << "----------------------------------------------------------\n";
+            cout << "❗️-- There are no registered appointments\n";
+            cout << "----------------------------------------------------------\n";
         }
     } catch (const exception& e) {
-        cout << "Error: " << e.what() << endl;
         invalidCommandError();
     }
 }
 
 //Function to process the commands
-void processCommands(int initialCommand)
+void processCommands(string initialCommand)
 {   
     //Initializing a linked list that will store all patients
     Patient *initialiserPatient = new Patient(true, NULL, "Init", "Ïnit", "0000-00-00");
@@ -219,12 +231,16 @@ void processCommands(int initialCommand)
     appointmentTail = initialiserAppointment;
 
     //Handling command inputs and redirecting to appropriate function for execution
-    int command = initialCommand;
-    while (command != 7)
-    {
+    string command = initialCommand;
+    if(!isNumber(command)){
+        invalidCommandError();
+        return;    
+    }
+    while (stoi(command) != 7)
+    {   
         try
         {
-            switch (command)
+            switch (stoi(command))
             {
             case 1:
                 registerPatient();
@@ -260,4 +276,5 @@ void processCommands(int initialCommand)
         cout << "**>Next Command:";
         cin >> command;
     }
+    exitProgram();
 }

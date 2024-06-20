@@ -20,7 +20,7 @@ void handleCommands()
     cout << "4. 🖥️  -- Display Registered Patients\n";
     cout << "5. 🖥️  -- Display Registered Doctors\n";
     cout << "6. 🖥️  -- Display Registered Appointments\n";
-    cout << "7. 🚪 -- Exit the System\n";
+    cout << "7. 🚪 -- Exit the System\n\n";
     start:
     try
     {
@@ -34,7 +34,7 @@ void handleCommands()
         if (stoi(command) == 7)
             exitProgram();  // Exit the program if command is 7
         else
-            processCommands(stoi(command));  // Process valid commands
+            processCommands(command);  // Process valid commands
     }
     catch (invalid_argument const &ex)
     {
