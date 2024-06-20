@@ -10,11 +10,22 @@ class Appointment
     int doctorId;
     string appointmentDate;
     Appointment *next;
+    int makeFirstAppt(Appointment *firstAppointment)
+    {
+        if (firstAppointment)
+        {
+            return firstAppointment->getAppointmentId() + 1;
+        }
+        else
+        {
+            return 1;
+        }
+    }
 
 public:
-    Appointment(int apptId, int patId, int docId, std::string apptDate)
+    Appointment(Appointment *firstAppointment, int docId, std::string apptDate)
     {
-        appointmentId = apptId;
+        appointmentId = makeFirstAppt(firstAppointment);
         patientId = patId;
         doctorId = docId;
         appointmentDate = apptDate;

@@ -5,6 +5,7 @@
 // #include "../LinkedLists/appointmentsLL.cpp"
 #include "../LinkedLists/doctorsLL.cpp"
 #include "../LinkedLists/patientsLL.cpp"
+#include "../Exceptions/UnregisteredException.cpp"
 
 #include "./exitProgram.cpp"
 
@@ -102,6 +103,25 @@ void registerAppointment()
     int doctorId;
     int patientId;
     int appointmentDate;
+
+    cout << "Enter the Doctor's Id: ";
+    cin.ignore();
+    getline(cin, doctorName);
+    cout << "Enter the Patient's Id: ";
+    getline(cin, doctorSpec);
+
+    if (!patientIdExists(patientId) || !doctorIdExists(doctorId))
+    {
+        unregisteredError();
+    }
+    else
+    {
+        Doctor *newDoctor = new Doctor(false, doctorTail, doctorName, doctorSpec);
+        cout << "Patient Registered successfully" << endl;
+        doctorTail->next = newDoctor;
+        newDoctor->display();
+        doctorTail = newDoctor;
+    }
 }
 
 void displayAppointments()
