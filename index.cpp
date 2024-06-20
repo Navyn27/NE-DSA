@@ -1,22 +1,25 @@
 #include <iostream>
 #include <string>
 
-#include "./utils/handleCommands.cpp"
+#include "./src/handleCommands.cpp"
 
 using namespace std;
 
 int main()
 {
+    cout<<"****************************************************************************************************************************************************************************************************\n";
+    cout<<"****************************************************************************************************************************************************************************************************\n";
     cout << "Enter your name/username to get started\n";
     string username;
     getline(cin, username);
     cout << "\n ________________________________________________________________________________________________\n\n";
-    cout << "Hello " << username;
+    cout << "                                        👋👋 Hello " << username;
     cout << "\n ________________________________________________________________________________________________\n\n";
-    cout << "Welcome to the Ruhengeri Referral Hospital Appointment Registration system\n\n _______________________________________________________________________________________________\n";
-    cout << "Enter a command to get started, use only numbers, i:e 1 or 2 ..." << endl;
+    cout << "\033["<< "33" << "m"<<"               Welcome to the Ruhengeri Referral Hospital Appointment Registration system\n\n _______________________________________________________________________________________________\n"<<"\033[0m";;
+    cout << "Enter a command to get started, use only numbers, i:e 1 or 2 ...\n\n";
 
-    handeCommands();
+    // Function call to handle user commands
+    handleCommands();
 
     return 0;
 }

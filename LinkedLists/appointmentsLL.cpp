@@ -9,8 +9,7 @@ class Appointment
     int patientId;
     int doctorId;
     string appointmentDate;
-    Appointment *next;
-    int makeFirstAppt(Appointment *firstAppointment)
+    int makeId(Appointment *firstAppointment)
     {
         if (firstAppointment)
         {
@@ -21,19 +20,18 @@ class Appointment
             return 1;
         }
     }
-
-public:
-    Appointment(Appointment *firstAppointment, int docId, std::string apptDate)
+    public:
+    Appointment *next = NULL;
+    Appointment(Appointment *firstAppointment, int docId, int patId, string apptDate)
     {
-        appointmentId = makeFirstAppt(firstAppointment);
+        appointmentId = makeId(firstAppointment);
         patientId = patId;
         doctorId = docId;
         appointmentDate = apptDate;
-        next = NULL;
     };
     int getAppointmentId()
     {
-        return apoointmentId;
+        return appointmentId;
     }
     int getPatientId()
     {
@@ -49,9 +47,11 @@ public:
     }
     void display()
     {
+        cout<<"🤒 ----- 🩺\n";
         cout << "ID:" << this->getAppointmentId() << endl;
-        cout << "PatientID: " << this->getPatiendId() << endl;
+        cout << "PatientID: " << this->getPatientId() << endl;
         cout << "DoctorID: " << this->getDoctorId() << endl;
         cout << "Appointment Date: " << this->getAppointmentDate() << endl;
+        cout << "----------------------------------------------------------\n";
     }
-}
+};

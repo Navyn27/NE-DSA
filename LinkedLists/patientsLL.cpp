@@ -10,15 +10,15 @@ class Patient
     string patientDOB;
     string patientGender;
     Patient *firstPatient;
-    int makeId(Patient *firstPatient)
+    int makeId(bool isHead, Patient *firstPatient)
     {
-        if (firstPatient)
+        if (firstPatient && !isHead)
         {
             return firstPatient->getId() + 1;
         }
         else
         {
-            return 1;
+            return 0;
         }
     }
 
@@ -42,24 +42,18 @@ public:
     Patient *next = NULL;
     Patient(bool isHead, Patient *firstPatient, string patientName, string patientGender, string patientDOB)
     {
-        if (isHead && firstPatient == NULL)
-        {
-            this->patientId = 1;
-        }
-        else
-        {
-            this->patientId = makeId(firstPatient);
-        }
+        this->patientId = makeId(isHead ,firstPatient);
         this->patientDOB = patientDOB;
         this->patientGender = patientGender;
         this->firstPatient = firstPatient;
         this->patientName = patientName;
     }
     void display()
-    {
+    {   cout<<"🤒\n";
         cout << "ID:" << this->getId() << endl;
         cout << "Name: " << this->getName() << endl;
         cout << "Date of Birth: " << this->getDOB() << endl;
         cout << "Gender: " << this->getGender() << endl;
+        cout << "----------------------------------------------------------\n";
     }
 };

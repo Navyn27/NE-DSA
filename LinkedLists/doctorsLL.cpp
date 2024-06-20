@@ -9,15 +9,15 @@ class Doctor
     string doctorName;
     string doctorSpecialization;
     Doctor *firstDoctor;
-    int makeId()
+    int makeId(bool isHead, Doctor *firstDoctor)
     {
-        if (firstDoctor)
+        if (firstDoctor && !isHead)
         {
             return firstDoctor->getId() + 1;
         }
         else
         {
-            return 1;
+            return 0;
         }
     }
 
@@ -37,23 +37,18 @@ public:
     Doctor *next = NULL;
     Doctor(bool isHead, Doctor *firstDoctor, string doctorName, string doctorSpecialization)
     {
-        if (isHead)
-        {
-            this->doctorId = 0;
-        }
-        else
-        {
-            this->doctorId = makeId();
-        }
+        this->doctorId = makeId(isHead, firstDoctor);
         this->doctorSpecialization = doctorSpecialization;
         this->firstDoctor = firstDoctor;
         this->doctorName = doctorName;
     }
 
     void display()
-    {
+    {   
+        cout<<"🩺\n";
         cout << "ID:" << this->getId() << endl;
         cout << "Name: " << this->getName() << endl;
         cout << "Specialization: " << this->getSpecialization() << endl;
+        cout << "----------------------------------------------------------\n";
     }
 };
