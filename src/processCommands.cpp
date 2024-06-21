@@ -13,6 +13,8 @@
 //Including necessary utilities used for Creating and Reading operations
 #include "../utils/exitProgram.cpp"
 #include "../utils/checkIdValidity.cpp"
+#include "../utils/checkDateValidity.cpp"
+#include "../utils/checkGenderValidity.cpp"
 
 //Including the standard namespace
 using namespace std;
@@ -33,10 +35,20 @@ void registerPatient()
         // To clear the input buffer
         cin.ignore();
         getline(cin, patientName);
+        enterPatDOB:
         cout << "Enter the Patient's DOB: ";
         getline(cin, patientDOB);
+        if(!isDateValid(patientDOB)){
+            invalidCommandError();
+            goto enterPatDOB;
+        }
+        enterPatGender:
         cout << "Enter the Patient's gender: ";
         getline(cin, patientGender);
+        if(!isGenderValid(patientGender)){
+            invalidCommandError();
+            goto enterPatGender;
+        }
 
         Patient *newPatient = new Patient(false, patientTail, patientName, patientGender, patientDOB);
         cout << "----------------------------------------------------------\n";
@@ -158,11 +170,15 @@ void registerAppointment(Patient *patientInitializer, Doctor *doctorInitializer)
             invalidCommandError();
             goto enterPat;
         }
-
+        enterDate:
         // Clear input buffer before reading the date
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter the Appointment Date: ";
         getline(cin, appointmentDate);
+        if(!isDateValid(appointmentDate)){
+            invalidCommandError();
+            goto enterDate;
+        }
 
         if (!isPatientIdValid(patientInitializer,stoi(patientId)) || stoi(patientId) == 0)
         {
