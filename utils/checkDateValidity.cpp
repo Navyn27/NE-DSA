@@ -30,7 +30,7 @@ bool isDateValid(const string& date) {
         if (!isLeapYear && day > 28) return false;
     }
 
-    if(yearStr>2024) return false;
+    if(year>2024) return false;
 
     return true;
 }
