@@ -2,7 +2,7 @@
 
 using namespace std;
 
-bool isDateValid(const string& date) {
+bool isDOBValid(const string& date) {
     if (date.length() != 10) return false;
 
     if (date[4] != '-' || date[7] != '-') return false;
@@ -30,7 +30,9 @@ bool isDateValid(const string& date) {
         if (!isLeapYear && day > 28) return false;
     }
 
-    if(year<2024||month<6||day<21) return false;
+    if(year>2024) return false;
+    if(month>6) return false;
+    if(day>21) return false;
 
     return true;
 }

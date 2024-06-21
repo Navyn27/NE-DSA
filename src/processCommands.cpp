@@ -15,6 +15,7 @@
 #include "../utils/checkIdValidity.cpp"
 #include "../utils/checkDateValidity.cpp"
 #include "../utils/checkGenderValidity.cpp"
+#include "../utils/checkDOBValidity.cpp"
 
 //Including the standard namespace
 using namespace std;
@@ -36,14 +37,14 @@ void registerPatient()
         cin.ignore();
         getline(cin, patientName);
         enterPatDOB:
-        cout << "Enter the Patient's DOB: ";
+        cout << "Enter the Patient's DOB (Format: YYYY-MM-DD): ";
         getline(cin, patientDOB);
-        if(!isDateValid(patientDOB)){
+        if(!isDOBValid(patientDOB)){
             invalidCommandError();
             goto enterPatDOB;
         }
         enterPatGender:
-        cout << "Enter the Patient's gender: ";
+        cout << "Enter the Patient's gender (Male/Female): ";
         getline(cin, patientGender);
         if(!isGenderValid(patientGender)){
             invalidCommandError();
