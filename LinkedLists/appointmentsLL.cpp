@@ -47,7 +47,6 @@ class Appointment
     }
     void display()
     {
-        cout<<"🤒 ----- 🥼\n";
         cout << "ID:" << this->getAppointmentId() << endl;
         cout << "PatientID: " << this->getPatientId() << endl;
         cout << "DoctorID: " << this->getDoctorId() << endl;

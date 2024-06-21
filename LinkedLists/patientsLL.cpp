@@ -49,7 +49,7 @@ public:
         this->patientName = patientName;
     }
     void display()
-    {   cout<<"🤒\n";
+    {
         cout << "ID:" << this->getId() << endl;
         cout << "Name: " << this->getName() << endl;
         cout << "Date of Birth: " << this->getDOB() << endl;

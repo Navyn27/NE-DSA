@@ -1,6 +1,7 @@
 //Importing necessary C++ inbuilt libraries
 #include <iostream>
 #include <string>
+#include <limits>
 
 // Importing the LinkedLists' classes
 #include "../LinkedLists/appointmentsLL.cpp"
@@ -53,7 +54,7 @@ void registerPatient()
 
         Patient *newPatient = new Patient(false, patientTail, patientName, patientGender, patientDOB);
         cout << "----------------------------------------------------------\n";
-        cout << "✅ -- Patient Registered successfully" << endl;
+        cout << "-- Patient Registered successfully" << endl;
         cout << "----------------------------------------------------------\n";
         patientTail->next = newPatient;
         newPatient->display();
@@ -110,7 +111,7 @@ void registerDoctor()
 
         Doctor *newDoctor = new Doctor(false, doctorTail, doctorName, doctorSpec);
         cout << "----------------------------------------------------------\n";
-            cout << "✅ -- Doctor Registered successfully" << endl;
+            cout << "-- Doctor Registered successfully" << endl;
             cout << "----------------------------------------------------------\n";
         doctorTail->next = newDoctor;
         newDoctor->display();
@@ -192,7 +193,7 @@ void registerAppointment(Patient *patientInitializer, Doctor *doctorInitializer)
         {
             Appointment *newAppointment = new Appointment(appointmentTail, stoi(doctorId), stoi(patientId), appointmentDate);
             cout << "----------------------------------------------------------\n";
-            cout << "✅ -- Appointment Registered successfully" << endl;
+            cout << "-- Appointment Registered successfully" << endl;
             cout << "----------------------------------------------------------\n";
             appointmentTail->next = newAppointment;
             newAppointment->display();

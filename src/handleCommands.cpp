@@ -14,13 +14,13 @@ void handleCommands()
     string command;  // Variable to store user input
     // Display the menu options to the user
     cout << "Menu: \n\n";
-    cout << "1. 📝 -- Register a Patient\n";
-    cout << "2. 📝 -- Register a Doctor\n";
-    cout << "3. 📝 -- Book an Appointment\n";
-    cout << "4. 🖥️  -- Display Registered Patients\n";
-    cout << "5. 🖥️  -- Display Registered Doctors\n";
-    cout << "6. 🖥️  -- Display Registered Appointments\n";
-    cout << "7. 🚪 -- Exit the System\n\n";
+    cout << "1. -- Register a Patient\n";
+    cout << "2. -- Register a Doctor\n";
+    cout << "3. -- Book an Appointment\n";
+    cout << "4. -- Display Registered Patients\n";
+    cout << "5. -- Display Registered Doctors\n";
+    cout << "6. -- Display Registered Appointments\n";
+    cout << "7. -- Exit the System\n\n";
     start:
     try
     {

@@ -45,7 +45,6 @@ public:
 
     void display()
     {   
-        cout<<"🥼\n";
         cout << "ID:" << this->getId() << endl;
         cout << "Name: " << this->getName() << endl;
         cout << "Specialization: " << this->getSpecialization() << endl;
